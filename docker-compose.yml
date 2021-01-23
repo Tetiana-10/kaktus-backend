@@ -20,4 +20,16 @@ services:
       - ./data/:/data/db
     ports:
         - "27017:27017"
+  frontend:
+    environment:
+#      - BACKEND_URI=http://service:3000/default
+      - BACKEND_URI=http://localhost:3000/default
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - "server"
+    ports:
+      - "8080:80"
+    restart: always
 
