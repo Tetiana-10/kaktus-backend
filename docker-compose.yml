@@ -25,7 +25,7 @@ services:
 #      - BACKEND_URI=http://service:3000/default
       - BACKEND_URI=http://localhost:3000/default
     build:
-      context: ./frontend
+      context: ./client
       dockerfile: Dockerfile
     depends_on:
       - "server"

@@ -1,0 +1,58 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Your Settings</h1>
+    <form (ngSubmit)="onSubmit()" #settingsForm="ngForm">
+      <div class="form-group">
+        <label for="temperature">Temperature</label>
+        <input type="text" class="form-control" id="temperature"
+               required
+               [(ngModel)]="model.tesmerature" name="temperature"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Temperature is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="alterEgo">Pressure</label>
+        <input type="text" class="form-control" id="alterEgo"
+               [(ngModel)]="model.pressure" name="alterEgo">
+      </div>
+
+      <div class="form-group">
+        <label for="power">Color</label>
+        <select class="form-control" id="power"
+                required
+                [(ngModel)]="model.color" name="power"
+                #power="ngModel">
+          <option *ngFor="let color of colors" [value]="color">{{color}}</option>
+        </select>
+        <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+          Color is required
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!settingsForm.form.valid">Submit</button>
+
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">Temperature&nbsp;</div>
+      <div class="col-xs-9">{{ model.tesmerature }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Pressure&nbsp;</div>
+      <div class="col-xs-9">{{ model.pressure }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Color&nbsp;</div>
+      <div class="col-xs-9">{{ model.color }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+  </div>
+</div>
