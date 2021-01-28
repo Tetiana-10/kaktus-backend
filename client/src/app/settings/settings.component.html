@@ -20,19 +20,6 @@
                [(ngModel)]="model.pressure" name="alterEgo">
       </div>
 
-      <div class="form-group">
-        <label for="power">Color</label>
-        <select class="form-control" id="power"
-                required
-                [(ngModel)]="model.color" name="power"
-                #power="ngModel">
-          <option *ngFor="let color of colors" [value]="color">{{color}}</option>
-        </select>
-        <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
-          Color is required
-        </div>
-      </div>
-
       <button type="submit" class="btn btn-success" [disabled]="!settingsForm.form.valid">Submit</button>
 
     </form>

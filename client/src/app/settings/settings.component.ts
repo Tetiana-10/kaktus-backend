@@ -10,10 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class SettingsComponent {
 
-  colors = ['red', 'blue', 'green'];
-  model = new SettingModel(20, 30, this.colors[0]);
+  model = new SettingModel(20, 30, "red");
   submitted = false;
-  url = environment.backend;
+
   onSubmit() {
     this.settingsService.addSettings(this.model)
       .subscribe(

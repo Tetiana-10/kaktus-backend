@@ -18,7 +18,7 @@ app.use(function (req,res,next) {
  * DATABASE *
  ************/
 
-const db = require('./models');
+// const db = require('./models');
 
 /**********
  * ROUTES *
@@ -68,20 +68,24 @@ app.get('/api/profile', (req, res) => {
   });
 });
 var temperature = 0;
+var pressure = 0;
+var together = 0;
 
 app.get('/default', (req, res) => {
   /*
    * use the books model and query to mongo database to get all objects
    */
     //res.json(40);
-    res.json(temperature);
+    res.json(together);
 });
 
 app.post('/default', (req, res) => {
   /*
    * use the books model and query to mongo database to get all objects
    */
-    temperature = Number(req.body.tesmerature);
+    temperature = parseInt(req.body.tesmerature);
+    pressure = parseInt(req.body.pressure);
+    together = parseInt(pressure*100+temperature);
     res.json(req.body);
 });
 

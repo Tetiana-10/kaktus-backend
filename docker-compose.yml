@@ -21,14 +21,18 @@ services:
     ports:
         - "27017:27017"
   frontend:
-    environment:
-#      - BACKEND_URI=http://service:3000/default
-      - BACKEND_URI=http://localhost:3000/default
     build:
       context: ./client
       dockerfile: Dockerfile
+      args:
+        - BACKEND_URI=http://localhost:3000/default
+    environment:
+      #  - BACKEND_URI=http://service:3000/default
+      - BACKEND_URI=http://server:3000/default
     depends_on:
       - "server"
+    links:
+      - server
     ports:
       - "8080:80"
     restart: always
